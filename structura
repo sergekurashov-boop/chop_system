@@ -1,0 +1,25 @@
+chop_system/
+├── index.php
+├── login.php
+├── assets/
+│   ├── css/
+│   │   ├── style.css
+│   │   └── print.css
+│   ├── js/
+│   │   └── script.js
+│   └── img/
+├── includes/
+│   ├── config.php
+│   ├── auth.php
+│   ├── header.php
+│   ├── footer.php
+│   └── functions.php
+├── modules/
+│   ├── admin/
+│   ├── senior/
+│   ├── medic/
+│   ├── guard/
+│   ├── reports/
+│   └── settings/
+└── database/
+    └── init.sql
