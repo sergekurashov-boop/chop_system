@@ -11,7 +11,7 @@
             </div>
             <div class="col-4">
                 <h4>Контакты</h4>
-                <p>Техническая поддержка: support@chop-system.ru</p>
+                <p>Техническая поддержка: spk188@mail.ru</p>
             </div>
             <div class="col-4">
                 <h4>Статус системы</h4>

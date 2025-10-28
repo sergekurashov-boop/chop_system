@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+// Базовые пути проекта
+define('BASE_URL', '/chop_system');
+define('BASE_DIR', dirname(__DIR__));
+
 // Включим вывод ошибок для разработки
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -51,8 +55,7 @@ function redirect($url) {
 
 // Автозагрузка функций
 require_once 'functions.php';
-// Проверяем доступность ZipArchive для бэкапов
-if (!class_exists('ZipArchive')) {
-    die("Ошибка: Расширение ZipArchive не установлено. Необходимо для работы бэкапов системы.");
-}
+// Конфигурация Froala Editor
+define('FROALA_CSS', BASE_URL . '/froala/css/froala_editor.pkgd.min.css');
+define('FROALA_JS', BASE_URL . '/froala/js/froala_editor.pkgd.min.css');
 ?>
