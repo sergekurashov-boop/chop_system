@@ -1,15 +1,44 @@
-// Основные функции системы
+// ЕДИНЫЙ обработчик DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация tooltips
+    // 1. Основные функции системы
     initTooltips();
-    
-    // Инициализация форм
     initForms();
-    
-    // Инициализация таблиц
     initTables();
+    
+    // 2. Сайдбар аккордеон
+    const navHeaders = document.querySelectorAll('.nav-header');
+    navHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const section = this.parentElement;
+            section.classList.toggle('active');
+        });
+    });
+    
+    // 3. Мобильное меню
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('open');
+            mainContent.classList.toggle('sidebar-open');
+        });
+    }
+    
+    // 4. Закрытие сайдбара при клике на ссылку (мобильные)
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('open');
+                mainContent.classList.remove('sidebar-open');
+            }
+        });
+    });
 });
 
+// Функции для тултипов
 function initTooltips() {
     const tooltips = document.querySelectorAll('[data-tooltip]');
     tooltips.forEach(element => {
@@ -49,6 +78,7 @@ function hideTooltip(e) {
     }
 }
 
+// Функции для форм
 function initForms() {
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
@@ -59,7 +89,7 @@ function initForms() {
             required.forEach(field => {
                 if (!field.value.trim()) {
                     valid = false;
-                    field.style.borderColor = 'var(--danger-red)';
+                    field.style.borderColor = 'var(--danger-gray)';
                 } else {
                     field.style.borderColor = '';
                 }
@@ -73,6 +103,7 @@ function initForms() {
     });
 }
 
+// Функции для таблиц
 function initTables() {
     const tables = document.querySelectorAll('.table');
     tables.forEach(table => {
@@ -138,7 +169,13 @@ function printElement(elementId) {
             <html>
                 <head>
                     <title>Печать</title>
-                    <link rel="stylesheet" href="assets/css/print.css">
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 20px; }
+                        table { width: 100%; border-collapse: collapse; }
+                        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                        th { background-color: #f2f2f2; }
+                        .no-print { display: none; }
+                    </style>
                 </head>
                 <body>
                     ${element.innerHTML}
@@ -149,6 +186,24 @@ function printElement(elementId) {
         printWindow.print();
     }
 }
+// Добавьте этот код в ваш основной JS-файл
+document.getElementById('sidebarToggle').addEventListener('click', function() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('collapsed');
+    
+    // Опционально: Сохраняем состояние в LocalStorage
+    const isCollapsed = sidebar.classList.contains('collapsed');
+    localStorage.setItem('sidebarCollapsed', isCollapsed);
+});
+
+// При загрузке страницы восстанавливаем состояние
+document.addEventListener('DOMContentLoaded', function() {
+    const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+    const sidebar = document.querySelector('.sidebar');
+    if (isCollapsed) {
+        sidebar.classList.add('collapsed');
+    }
+});
 
 // AJAX функции
 async function apiCall(url, method = 'GET', data = null) {
@@ -171,3 +226,9 @@ async function apiCall(url, method = 'GET', data = null) {
         return { success: false, error: error.message };
     }
 }
+
+// Глобальные функции для вызова из HTML
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.printElement = printElement;
+window.apiCall = apiCall;

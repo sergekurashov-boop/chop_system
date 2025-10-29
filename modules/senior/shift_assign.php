@@ -32,48 +32,57 @@ if (!isset($_GET['id'])) {
         <link rel="stylesheet" href="../../assets/css/style.css">
     </head>
     <body>
-        <?php include '../../includes/header.php'; ?>
+        <!-- Кнопка мобильного меню -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
         
-        <div class="container">
-            <div class="card">
-                <div class="card-header">
-                    <h2>Выбор смены для назначений</h2>
-                    <a href="shifts.php" class="btn btn-secondary">← Назад к управлению сменами</a>
-                </div>
-                <div class="card-body">
-                    <?php if (count($shifts) > 0): ?>
-                        <div class="row">
-                            <?php foreach ($shifts as $shift): ?>
-                                <div class="col-4">
-                                    <div class="card" style="margin-bottom: 1rem;">
-                                        <div class="card-header">
-                                            <strong>Смена #<?php echo $shift['id']; ?></strong>
-                                        </div>
-                                        <div class="card-body">
-                                            <p><strong>Место:</strong> <?php echo htmlspecialchars($shift['location']); ?></p>
-                                            <p><strong>Начало:</strong> <?php echo date('d.m.Y H:i', strtotime($shift['start_datetime'])); ?></p>
-                                            <p><strong>Тип:</strong> <?php echo $shift['shift_type'] === '12_hours' ? '12 часов' : '24 часа'; ?></p>
-                                            <p><strong>Назначено:</strong> 
-                                                <span class="badge <?php echo ($shift['assigned_count'] >= $shift['required_guards_count']) ? 'badge-success' : 'badge-warning'; ?>">
-                                                    <?php echo $shift['assigned_count']; ?>/<?php echo $shift['required_guards_count']; ?>
-                                                </span>
-                                            </p>
-                                            <a href="shift_assign.php?id=<?php echo $shift['id']; ?>" class="btn btn-primary btn-sm">
-                                                Управлять назначениями
-                                            </a>
+        <?php 
+        include '../../includes/header.php'; 
+        include '../../includes/sidebar.php';
+        ?>
+        
+        <div class="main-content">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Выбор смены для назначений</h2>
+                        <a href="shifts.php" class="btn btn-secondary">← Назад к управлению сменами</a>
+                    </div>
+                    <div class="card-body">
+                        <?php if (count($shifts) > 0): ?>
+                            <div class="row">
+                                <?php foreach ($shifts as $shift): ?>
+                                    <div class="col-4">
+                                        <div class="card" style="margin-bottom: 1rem;">
+                                            <div class="card-header">
+                                                <strong>Смена #<?php echo $shift['id']; ?></strong>
+                                            </div>
+                                            <div class="card-body">
+                                                <p><strong>Место:</strong> <?php echo htmlspecialchars($shift['location']); ?></p>
+                                                <p><strong>Начало:</strong> <?php echo date('d.m.Y H:i', strtotime($shift['start_datetime'])); ?></p>
+                                                <p><strong>Тип:</strong> <?php echo $shift['shift_type'] === '12_hours' ? '12 часов' : '24 часа'; ?></p>
+                                                <p><strong>Назначено:</strong> 
+                                                    <span class="badge <?php echo ($shift['assigned_count'] >= $shift['required_guards_count']) ? 'badge-success' : 'badge-warning'; ?>">
+                                                        <?php echo $shift['assigned_count']; ?>/<?php echo $shift['required_guards_count']; ?>
+                                                    </span>
+                                                </p>
+                                                <a href="shift_assign.php?id=<?php echo $shift['id']; ?>" class="btn btn-primary btn-sm">
+                                                    Управлять назначениями
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php else: ?>
-                        <p>Нет созданных смен.</p>
-                        <a href="shifts.php" class="btn btn-primary">Создать первую смену</a>
-                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php else: ?>
+                            <p>Нет созданных смен.</p>
+                            <a href="shifts.php" class="btn btn-primary">Создать первую смену</a>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <script src="../../assets/js/script.js"></script>
         <?php include '../../includes/footer.php'; ?>
     </body>
     </html>
@@ -142,128 +151,137 @@ if (isset($_GET['delete'])) {
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <?php include '../../includes/header.php'; ?>
+    <!-- Кнопка мобильного меню -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
     
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h2>Назначения на смену #<?php echo $shift['id']; ?></h2>
-                <a href="shift_assign.php" class="btn btn-secondary">← Выбрать другую смену</a>
-            </div>
-            <div class="card-body">
-                <?php if (isset($error)): ?>
-                    <div class="alert alert-error"><?php echo $error; ?></div>
-                <?php endif; ?>
-                
-                <?php if (isset($_SESSION['success_message'])): ?>
-                    <div class="alert alert-success"><?php echo $_SESSION['success_message']; ?></div>
-                    <?php unset($_SESSION['success_message']); ?>
-                <?php endif; ?>
+    <?php 
+    include '../../includes/header.php'; 
+    include '../../includes/sidebar.php';
+    ?>
+    
+    <div class="main-content">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Назначения на смену #<?php echo $shift['id']; ?></h2>
+                    <a href="shift_assign.php" class="btn btn-secondary">← Выбрать другую смену</a>
+                </div>
+                <div class="card-body">
+                    <?php if (isset($error)): ?>
+                        <div class="alert alert-error"><?php echo $error; ?></div>
+                    <?php endif; ?>
+                    
+                    <?php if (isset($_SESSION['success_message'])): ?>
+                        <div class="alert alert-success"><?php echo $_SESSION['success_message']; ?></div>
+                        <?php unset($_SESSION['success_message']); ?>
+                    <?php endif; ?>
 
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="card-header">Информация о смене</div>
-                            <div class="card-body">
-                                <p><strong>Место:</strong> <?php echo htmlspecialchars($shift['location']); ?></p>
-                                <p><strong>Начало:</strong> <?php echo date('d.m.Y H:i', strtotime($shift['start_datetime'])); ?></p>
-                                <p><strong>Окончание:</strong> <?php echo date('d.m.Y H:i', strtotime($shift['end_datetime'])); ?></p>
-                                <p><strong>Требуется охранников:</strong> <?php echo $shift['required_guards_count']; ?></p>
-                                <p><strong>Тип смены:</strong> <?php echo $shift['shift_type'] === '12_hours' ? '12 часов' : '24 часа'; ?></p>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">Информация о смене</div>
+                                <div class="card-body">
+                                    <p><strong>Место:</strong> <?php echo htmlspecialchars($shift['location']); ?></p>
+                                    <p><strong>Начало:</strong> <?php echo date('d.m.Y H:i', strtotime($shift['start_datetime'])); ?></p>
+                                    <p><strong>Окончание:</strong> <?php echo date('d.m.Y H:i', strtotime($shift['end_datetime'])); ?></p>
+                                    <p><strong>Требуется охранников:</strong> <?php echo $shift['required_guards_count']; ?></p>
+                                    <p><strong>Тип смены:</strong> <?php echo $shift['shift_type'] === '12_hours' ? '12 часов' : '24 часа'; ?></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="card" style="margin-top: 2rem;">
-                    <div class="card-header">
-                        <h3>Текущие назначения (<?php echo count($assignments); ?>/<?php echo $shift['required_guards_count']; ?>)</h3>
-                    </div>
-                    <div class="card-body">
-                        <?php if (count($assignments) > 0): ?>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Сотрудник</th>
-                                        <th>Должность</th>
-                                        <th>Медосмотр</th>
-                                        <th>Маршрут</th>
-                                        <th>Инструктаж</th>
-                                        <th>Действия</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($assignments as $assignment): ?>
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-header">
+                            <h3>Текущие назначения (<?php echo count($assignments); ?>/<?php echo $shift['required_guards_count']; ?>)</h3>
+                        </div>
+                        <div class="card-body">
+                            <?php if (count($assignments) > 0): ?>
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td><?php echo htmlspecialchars($assignment['full_name']); ?></td>
-                                            <td><?php echo htmlspecialchars($assignment['position']); ?></td>
-                                            <td>
-                                                <span class="badge <?php echo $assignment['medical_status'] === 'passed' ? 'badge-success' : ($assignment['medical_status'] === 'pending' ? 'badge-warning' : 'badge-danger'); ?>">
-                                                    <?php 
-                                                    if ($assignment['medical_status'] === 'passed') echo 'Пройден';
-                                                    elseif ($assignment['medical_status'] === 'failed') echo 'Не пройден';
-                                                    else echo 'Ожидает';
-                                                    ?>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <?php if ($assignment['route_familiarized']): ?>
-                                                    <span class="badge badge-success">✅ Ознакомлен</span>
-                                                <?php else: ?>
-                                                    <span class="badge badge-warning">❌ Не ознакомлен</span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <?php if ($assignment['briefing_completed']): ?>
-                                                    <span class="badge badge-success">✅ Пройден</span>
-                                                <?php else: ?>
-                                                    <span class="badge badge-warning">❌ Не пройден</span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <a href="shift_assign.php?id=<?php echo $shift_id; ?>&delete=<?php echo $assignment['id']; ?>" 
-                                                   class="btn btn-danger btn-sm"
-                                                   onclick="return confirm('Удалить назначение?')">Удалить</a>
-                                            </td>
+                                            <th>Сотрудник</th>
+                                            <th>Должность</th>
+                                            <th>Медосмотр</th>
+                                            <th>Маршрут</th>
+                                            <th>Инструктаж</th>
+                                            <th>Действия</th>
                                         </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        <?php else: ?>
-                            <p>На эту смену еще не назначены охранники.</p>
-                        <?php endif; ?>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($assignments as $assignment): ?>
+                                            <tr>
+                                                <td><?php echo htmlspecialchars($assignment['full_name']); ?></td>
+                                                <td><?php echo htmlspecialchars($assignment['position']); ?></td>
+                                                <td>
+                                                    <span class="badge <?php echo $assignment['medical_status'] === 'passed' ? 'badge-success' : ($assignment['medical_status'] === 'pending' ? 'badge-warning' : 'badge-danger'); ?>">
+                                                        <?php 
+                                                        if ($assignment['medical_status'] === 'passed') echo 'Пройден';
+                                                        elseif ($assignment['medical_status'] === 'failed') echo 'Не пройден';
+                                                        else echo 'Ожидает';
+                                                        ?>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <?php if ($assignment['route_familiarized']): ?>
+                                                        <span class="badge badge-success">✅ Ознакомлен</span>
+                                                    <?php else: ?>
+                                                        <span class="badge badge-warning">❌ Не ознакомлен</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if ($assignment['briefing_completed']): ?>
+                                                        <span class="badge badge-success">✅ Пройден</span>
+                                                    <?php else: ?>
+                                                        <span class="badge badge-warning">❌ Не пройден</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <a href="shift_assign.php?id=<?php echo $shift_id; ?>&delete=<?php echo $assignment['id']; ?>" 
+                                                       class="btn btn-danger btn-sm"
+                                                       onclick="return confirm('Удалить назначение?')">Удалить</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <?php else: ?>
+                                <p>На эту смену еще не назначены охранники.</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card" style="margin-top: 2rem;">
-                    <div class="card-header">
-                        <h3>Добавить назначение</h3>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Сотрудник</label>
-                                        <select name="employee_id" class="form-control" required>
-                                            <option value="">Выберите сотрудника</option>
-                                            <?php foreach ($employees as $employee): ?>
-                                                <option value="<?php echo $employee['id']; ?>">
-                                                    <?php echo htmlspecialchars($employee['full_name']); ?> - <?php echo htmlspecialchars($employee['position']); ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-header">
+                            <h3>Добавить назначение</h3>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Сотрудник</label>
+                                            <select name="employee_id" class="form-control" required>
+                                                <option value="">Выберите сотрудника</option>
+                                                <?php foreach ($employees as $employee): ?>
+                                                    <option value="<?php echo $employee['id']; ?>">
+                                                        <?php echo htmlspecialchars($employee['full_name']); ?> - <?php echo htmlspecialchars($employee['position']); ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Добавить назначение</button>
-                        </form>
+                                <button type="submit" class="btn btn-primary">Добавить назначение</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="../../assets/js/script.js"></script>
     <?php include '../../includes/footer.php'; ?>
 </body>
 </html>

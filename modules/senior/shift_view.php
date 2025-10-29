@@ -182,6 +182,10 @@ try {
             </div>
         </div>
     </div>
+	
+    <!-- ПРАВИЛЬНЫЙ ПУТЬ к JavaScript -->
+	<script src="assets/js/instructions.min.js"></script>
+    <script src="../../assets/js/script.js"></script>
 
     <?php include '../../includes/footer.php'; ?>
 </body>

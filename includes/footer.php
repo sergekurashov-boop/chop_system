@@ -2,18 +2,18 @@
 <?php define('FOOTER_INCLUDED', true); ?>
 </div>
 
-<footer style="background: var(--dark-gray); color: white; padding: 2rem 0; margin-top: 3rem;">
+<footer style="background: #808080; color: white; padding: 2rem 0; margin-top: 3rem;">
     <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <h4>Система управления ЧОП</h4>
-                <p>Версия 1.0</p>
+        <div class="row" >
+            <div class="col-4"style="margin-left: auto;">
+                <h4>Версия 1.0</h4>
+                
             </div>
-            <div class="col-4">
+            <div class="col-4"style="margin-left: auto;">
                 <h4>Контакты</h4>
-                <p>Техническая поддержка: spk188@mail.ru</p>
+                <p>Техническая поддержка:  <a href="mailto:spk188@mail.ru" style="color: #f8f9fa; text-decoration: none;">✉️ spk188@mail.ru</a></p>
             </div>
-            <div class="col-4">
+            <div class="col-4"style="margin-left: auto;">
                 <h4>Статус системы</h4>
                 <p>Все системы работают в штатном режиме</p>
             </div>

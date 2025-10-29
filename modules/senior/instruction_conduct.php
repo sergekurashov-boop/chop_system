@@ -3,6 +3,7 @@ require_once '../../includes/config.php';
 require_once '../../includes/auth.php';
 require_once '../../includes/functions.php';
 
+
 checkAuth();
 
 if (!hasAccess('senior') && !hasAccess('admin')) {
@@ -100,7 +101,10 @@ $completed_instructions = $stmt_completions->fetchAll(PDO::FETCH_KEY_PAIR);
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <?php include '../../includes/header.php'; ?>
+    <?php include '../../includes/header.php'; 
+	include '../../includes/header.php';
+include '../../includes/sidebar.php';
+	?>
     
     <div class="container">
         <div class="card">
@@ -197,7 +201,7 @@ $completed_instructions = $stmt_completions->fetchAll(PDO::FETCH_KEY_PAIR);
             </div>
         </div>
     </div>
-
+<script src="../../assets/js/script.js"></script>
     <?php include '../../includes/footer.php'; ?>
 </body>
 </html>

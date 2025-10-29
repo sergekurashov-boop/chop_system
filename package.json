@@ -1,0 +1,14 @@
+{
+  "name": "chop-system",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build:instructions": "rollup assets/js/build/instructions-build.js --file assets/js/instructions.min.js --format iife --plugin @rollup/plugin-terser",
+    "build:all": "npm run build:instructions && npm run build:shifts",
+    "watch": "rollup -w assets/js/build/instructions-build.js --file assets/js/instructions.min.js --format iife"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.0",
+    "rollup": "^3.0.0"
+  }
+}

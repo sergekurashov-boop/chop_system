@@ -27,11 +27,161 @@ body {
     line-height: 1.6;
 }
 
+/* Липкий header на всю ширину */
+.header {
+    background: #808080;
+    color: white;
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 60px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-weight: 500;
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+}
+
+/* Сайдбар */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: #808080;
+    border-right: 1px solid var(--border-gray);
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    z-index: 1001;
+    padding-top: 60px; /* Учет высоты header */
+}
+
+.sidebar-nav {
+    padding: 1rem 0;
+}
+
+.nav-item {
+    margin-bottom: 0.5rem;
+}
+
+.nav-section {
+    margin-bottom: 0.5rem;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+    color: white;
+}
+
+.nav-header:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.nav-icon {
+    margin-right: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.nav-text {
+    flex: 1;
+    font-weight: 600;
+    color: white;
+}
+
+.nav-arrow {
+    transition: transform 0.3s;
+    color: var(--light-gray);
+}
+
+.nav-section.active .nav-arrow {
+    transform: rotate(180deg);
+}
+
+.nav-submenu {
+    display: none;
+    background: rgba(0,0,0,0.2);
+}
+
+.nav-section.active .nav-submenu {
+    display: block;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.6rem 1.5rem 0.6rem 3rem;
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border-left-color: var(--accent-gray);
+}
+
+.nav-link.active {
+    background-color: var(--accent-gray);
+    color: white;
+    border-left-color: white;
+}
+
+/* Основной контент с отступом */
+.main-content {
+    margin-left: 280px;
+    padding-top: 20px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+}
 
 /* Main content */
 .container {
     max-width: 1380px;
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 0 2rem;
 }
 
@@ -213,90 +363,39 @@ body {
     border: 1px solid #f5c6cb;
 }
 
-/* Print styles */
-@media print {
-    .no-print { display: none !important; }
-    .card { box-shadow: none; border: 1px solid #000; }
-    .btn { display: none; }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .col-2, .col-3, .col-4 {
-        flex: 0 0 100%;
-        max-width: 100%;
-        margin-bottom: 1rem;
-    }
-    
-    .container {
-        padding: 0 1rem;
-    }
-}
-/* Липкий header на всю ширину */
-.header {
-    background: #808080;
+/* Мобильное меню */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1002;
+    background: var(--accent-gray);
     color: white;
-    padding: 0.5rem 0; /* Уменьшили высоту */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1380px; /* Синхронизируем с контейнером */
-    margin: 0 auto;
-    padding: 0 2rem; /* Уменьшим если нужно */
-}
-
-.logo {
-    font-size: 1.3rem; /* Немного меньше */
-    font-weight: bold;
-    color: white;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 1rem; /* Уменьшили расстояние между пунктами */
-    margin: 0;
-    padding: 0;
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    padding: 0.4rem 0.8rem; /* Уменьшили отступы */
+    padding: 0.5rem;
     border-radius: 4px;
-    transition: all 0.3s;
-    font-weight: 500;
-    white-space: nowrap;
-    font-size: 0.9rem; /* Немного меньше шрифт */
+    cursor: pointer;
 }
 
-.nav-menu a:hover {
-    background-color: rgba(255,255,255,0.15);
-    transform: translateY(-1px);
-}
-
-
-
-/* Адаптивность для мобильных */
+/* Адаптивность */
 @media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding-top: 70px;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
     .navbar {
         flex-direction: column;
         gap: 0.5rem;
@@ -317,25 +416,88 @@ body {
     .container {
         padding: 0 1rem;
     }
+    
+    .col-2, .col-3, .col-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print { display: none !important; }
+    .card { box-shadow: none; border: 1px solid #000; }
+    .btn { display: none; }
 }
 
 /* Плавная прокрутка */
 html {
     scroll-behavior: smooth;
 }
-
-/* Основной контент */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--primary-gray);
-    color: var(--text-gray);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+/* Существующий сайдбар */
+.sidebar {
+    width: 250px;
+    transition: width 0.3s ease;
 }
 
-.container {
-    max-width: 1380px;
-    margin: 2rem auto;
-    padding: 0 2rem;
+/* Состояние "свёрнуто" */
+.sidebar.collapsed {
+    width: 60px; /* Место только для иконок */
+}
+
+/* В свёрнутом состоянии скрываем текст */
+.sidebar.collapsed .nav-link-text {
+    display: none;
+}
+
+/* Стили для кнопки-переключателя */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+/* ===== SIDEBAR TOGGLE FUNCTIONALITY ===== */
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .nav-arrow {
+    display: none;
+}
+
+.sidebar.collapsed .nav-header {
+    justify-content: center;
+    padding: 0.75rem 0.5rem;
+}
+
+.sidebar.collapsed .nav-icon {
+    margin-right: 0;
+}
+
+.sidebar.collapsed .nav-link {
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 60px;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-toggle:hover {
+    background-color: rgba(255,255,255,0.1);
 }

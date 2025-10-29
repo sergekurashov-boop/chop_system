@@ -81,16 +81,18 @@ function sendIncidentNotification($shift_id, $type, $description, $severity) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Журнал учета смен</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <!-- Froala Editor -->
-    <link rel="stylesheet" href="../../froala/css/froala_editor.pkgd.min.css">
-</head>
+    </head>
 <body>
-    <?php include '../../includes/header.php'; ?>
-    
+    <?php include '../../includes/header.php'; 
+	include '../../includes/sidebar.php';
+	?>
+    <!-- ДОБАВЛЯЕМ ОБЕРТКУ MAIN-CONTENT -->
+    <div class="main-content">
     <div class="container">
         <div class="card">
             <div class="card-header">
                 <h2>📋 Журнал учета смен</h2>
+				<a href="shifts.php" class="btn btn-secondary">← Назад к управлению сменами</a>
             </div>
             <div class="card-body">
                 <?php displayMessages(); ?>
@@ -293,21 +295,7 @@ function sendIncidentNotification($shift_id, $type, $description, $severity) {
         </div>
     </div>
 
-    <!-- Froala Editor JS -->
-    <script src="../../froala/js/froala_editor.pkgd.min.js"></script>
-    <script>
-    // Инициализация редакторов для всех текстовых полей
-    document.addEventListener('DOMContentLoaded', function() {
-        var editors = document.querySelectorAll('textarea[id^="incident_editor"]');
-        editors.forEach(function(editor) {
-            new FroalaEditor(editor, {
-                toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', '|', 'fontFamily', 'fontSize', 'color', '|', 'paragraphStyle', 'lineHeight', '|', 'insertLink', 'insertImage', '|', 'emoticons', 'insertTable', '|', 'undo', 'redo'],
-                language: 'ru',
-                heightMin: 200
-            });
-        });
-    });
-    </script>
+   <script src="../../assets/js/script.js"></script>
 
     <?php include '../../includes/footer.php'; ?>
 </body>

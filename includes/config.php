@@ -55,7 +55,4 @@ function redirect($url) {
 
 // Автозагрузка функций
 require_once 'functions.php';
-// Конфигурация Froala Editor
-define('FROALA_CSS', BASE_URL . '/froala/css/froala_editor.pkgd.min.css');
-define('FROALA_JS', BASE_URL . '/froala/js/froala_editor.pkgd.min.css');
 ?>

@@ -81,4 +81,39 @@ function hasAccess($requiredRole) {
     
     return ($hierarchy[$userRole] ?? 0) >= ($hierarchy[$requiredRole] ?? 0);
 }
-?>
+
+/**
+ * Проверяет, является ли пользователь администратором
+ */
+function isAdmin() {
+    return ($_SESSION['user_role'] ?? '') === 'admin';
+}
+
+/**
+ * Проверяет, является ли пользователь руководителем
+ */
+function isSenior() {
+    return ($_SESSION['user_role'] ?? '') === 'senior';
+}
+
+/**
+ * Проверяет, является ли пользователь медиком  
+ */
+function isMedic() {
+    return ($_SESSION['user_role'] ?? '') === 'medic';
+}
+
+/**
+ * Проверяет, является ли пользователь охранником
+ */
+function isGuard() {
+    return ($_SESSION['user_role'] ?? '') === 'guard';
+}
+
+/**
+ * Проверяет активна ли текущая страница для подсветки в меню
+ */
+function isActivePage($page_path) {
+    $current_page = $_SERVER['PHP_SELF'];
+    return strpos($current_page, $page_path) !== false ? 'active' : '';
+}
