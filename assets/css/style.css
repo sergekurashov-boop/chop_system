@@ -501,3 +501,54 @@ html {
 .sidebar-toggle:hover {
     background-color: rgba(255,255,255,0.1);
 }
+//* Стили для видеомодуля в сайдбаре */
+.new-feature {
+    position: relative;
+    background: #2E8B57 !important;
+    border-left: 4px solid #1f6b41 !important;
+    margin: 5px 0;
+    border-radius: 0 8px 8px 0;
+    transition: all 0.3s ease;
+}
+
+.new-feature .nav-link {
+    font-weight: 600 !important;
+    color: white !important;
+}
+
+.new-feature .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #f8f9fa !important;
+}
+
+.new-feature.active {
+    background: #1f6b41 !important;
+    border-left-color: #164c30 !important;
+}
+
+.new-feature.active .nav-link {
+    color: white !important;
+}
+
+.new-badge {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2E8B57;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: auto;
+    animation: subtle-pulse 3s infinite;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes subtle-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Подсветка при наведении на весь блок */
+.new-feature:hover {
+    background: #3a9a65 !important;
+}

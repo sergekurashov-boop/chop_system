@@ -6,10 +6,15 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <!-- Сайдбар -->
 <aside class="sidebar">
     <div class="logo">
-        <div>
-           <center> <img src="/chop_system/742.jpg" width="" height="" alt="Логотип ЧОП"></center>
-		   <button id="sidebarToggle" class="sidebar-toggle" title="Свернуть меню">&lArr;Свернуть<br>&rArr;Развернуть</button>
-        </div>
+        <div class="sidebar-header">
+    <div class="logo-container">
+        <img src="/chop_system/742.jpg" alt="Логотип ЧОП" class="sidebar-logo">
+    </div>
+    <button id="sidebarToggle" class="sidebar-toggle" title="Свернуть/развернуть сайдбар">
+        <span class="toggle-icon">←</span>
+        <span class="toggle-text">Свернуть</span>
+    </button>
+</div>
     </div>
     
     <nav class="sidebar-nav">
@@ -20,6 +25,17 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <span class="nav-text">Главная</span>
             </a>
         </div>
+		<!-- 📹 ВИДЕОНАБЛЮДЕНИЕ - НОВЫЙ РАЗДЕЛ -->
+        <?php if (in_array($currentUserRole, ['admin', 'senior', 'dispatcher'])): ?>
+        <div class="nav-item new-feature">
+            <a href="/chop_system/modules/video/dashboard.php" 
+               class="nav-link <?php echo $currentPage == 'dashboard.php' ? 'active' : ''; ?>">
+                <span class="nav-icon">🎥</span>
+                <span class="nav-text">Видеонаблюдение</span>
+                <span class="new-badge">NEW</span>
+            </a>
+        </div>
+        <?php endif; ?>
 
         <!-- Смены -->
         <?php if (in_array($currentUserRole, ['admin', 'senior', 'guard'])): ?>
@@ -92,31 +108,37 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         </div>
         <?php endif; ?>
 
-        <!-- Администрирование -->
-        <?php if ($currentUserRole === 'admin'): ?>
-        <div class="nav-section">
-            <div class="nav-header">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-text">Администрирование</span>
-                <span class="nav-arrow">▼</span>
-            </div>
-            <div class="nav-submenu">
-                <!-- ДОБАВЛЕНА ССЫЛКА НА ДАШБОРД -->
-                <a href="/chop_system/modules/admin/dashboard.php" class="nav-link <?php echo $currentPage == 'dashboard.php' ? 'active' : ''; ?>">
-                    📊 Дашборд
-                </a>
-                <a href="/chop_system/modules/admin/users.php" class="nav-link <?php echo $currentPage == 'users.php' ? 'active' : ''; ?>">
-                    Пользователи
-                </a>
-                <a href="/chop_system/modules/admin/backup.php" class="nav-link <?php echo $currentPage == 'backup.php' ? 'active' : ''; ?>">
-                    Бэкапы
-                </a>
-                <a href="/chop_system/modules/settings/system.php" class="nav-link <?php echo $currentPage == 'system.php' ? 'active' : ''; ?>">
-                    Настройки
-                </a>
-            </div>
-        </div>
-        <?php endif; ?>
+      <!-- Администрирование -->
+<?php if ($currentUserRole === 'admin'): ?>
+<div class="nav-section">
+    <div class="nav-header">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-text">Администрирование</span>
+        <span class="nav-arrow">▼</span>
+    </div>
+    <div class="nav-submenu">
+        <a href="/chop_system/modules/admin/dashboard.php" class="nav-link <?php echo $currentPage == 'dashboard.php' ? 'active' : ''; ?>">
+            📊 Дашборд
+        </a>
+        <a href="/chop_system/modules/admin/users.php" class="nav-link <?php echo $currentPage == 'users.php' ? 'active' : ''; ?>">
+            👥 Пользователи
+        </a>
+        <a href="/chop_system/modules/admin/backup.php" class="nav-link <?php echo $currentPage == 'backup.php' ? 'active' : ''; ?>">
+            💾 Бэкапы
+        </a>
+        <a href="/chop_system/modules/admin/settings.php" class="nav-link <?php echo $currentPage == 'settings.php' ? 'active' : ''; ?>">
+            ⚙️ Настройки системы
+        </a>
+        <a href="/chop_system/modules/admin/system/logs.php" class="nav-link <?php echo $currentPage == 'logs.php' ? 'active' : ''; ?>">
+            📋 Логи системы
+        </a>
+        <!-- Демо видеонаблюдения -->
+        <a href="/chop_system/modules/video/demo.php" class="nav-link <?php echo $currentPage == 'demo.php' ? 'active' : ''; ?>">
+            🎥 Видеонаблюдение (Демо)
+        </a>
+    </div>
+</div>
+<?php endif; ?>
 
         <!-- Выход -->
         <div class="nav-item">

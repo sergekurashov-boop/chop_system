@@ -5,6 +5,16 @@ session_start();
 define('BASE_URL', '/chop_system');
 define('BASE_DIR', dirname(__DIR__));
 
+// Пути к ресурсам
+define('ASSETS_URL', BASE_URL . '/assets');
+define('CSS_URL', ASSETS_URL . '/css');
+define('JS_URL', ASSETS_URL . '/js');
+define('INCLUDES_DIR', BASE_DIR . '/includes');
+
+// Основные файлы
+define('MAIN_CSS', CSS_URL . '/style.css');
+define('MAIN_JS', JS_URL . '/script.js');
+
 // Включим вывод ошибок для разработки
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

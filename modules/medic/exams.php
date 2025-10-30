@@ -18,8 +18,11 @@ if (!hasAccess('medic') && !hasAccess('admin')) {
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <?php include '../../includes/header.php'; ?>
-    
+    <?php include '../../includes/header.php'; 
+	include '../../includes/sidebar.php';
+	?>
+    <!-- Основной контент -->
+    <div class="main-content">
     <div class="container">
         <div class="card">
             <div class="card-header">
