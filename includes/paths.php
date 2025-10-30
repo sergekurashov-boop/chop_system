@@ -1,26 +1,24 @@
 <?php
 // includes/paths.php
-function getBasePath($levels = 2) {
-    return str_repeat('../', $levels);
+
+function getModuleCSSPath($module, $levels = 2) {
+    return getBasePath($levels) . "modules/{$module}/assets/css/";
 }
 
-function getCSSPath($levels = 2) {
-    return getBasePath($levels) . 'assets/css/style.css';
+function getModuleJSPath($module, $levels = 2) {
+    return getBasePath($levels) . "modules/{$module}/assets/js/";
 }
 
-function getJSPath($levels = 2) {
-    return getBasePath($levels) . 'assets/js/script.js';
+// Для видео модуля
+function getVideoCSS() {
+    return getModuleCSSPath('video') . 'video.css';
 }
 
-function getHeaderPath($levels = 2) {
-    return getBasePath($levels) . 'includes/header.php';
+function getVideoJS() {
+    return getModuleJSPath('video') . 'video.js';
 }
 
-function getSidebarPath($levels = 2) {
-    return getBasePath($levels) . 'includes/sidebar.php';
-}
-
-function getFooterPath($levels = 2) {
-    return getBasePath($levels) . 'includes/footer.php';
+function getVideoGeneratorJS() {
+    return getModuleJSPath('video') . 'video-generator.js';
 }
 ?>

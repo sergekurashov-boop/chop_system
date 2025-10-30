@@ -64,27 +64,36 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         </div>
         <?php endif; ?>
 
-        <!-- Медицина -->
-        <?php if (in_array($currentUserRole, ['admin', 'medic'])): ?>
-        <div class="nav-section">
-            <div class="nav-header">
-                <span class="nav-icon">🏥</span>
-                <span class="nav-text">Медицина</span>
-                <span class="nav-arrow">▼</span>
-            </div>
-            <div class="nav-submenu">
-                <a href="/chop_system/modules/medic/dashboard.php" class="nav-link <?php echo $currentPage == 'dashboard.php' ? 'active' : ''; ?>">
-                    Дашборд
-                </a>
-                <a href="/chop_system/modules/medic/exams.php" class="nav-link <?php echo $currentPage == 'exams.php' ? 'active' : ''; ?>">
-                    Медосмотры
-                </a>
-                <a href="/chop_system/modules/medic/employees.php" class="nav-link <?php echo $currentPage == 'employees.php' ? 'active' : ''; ?>">
-                    Сотрудники
-                </a>
-            </div>
-        </div>
-        <?php endif; ?>
+<!-- Медицина -->
+<?php if (in_array($currentUserRole, ['admin', 'medic'])): ?>
+<div class="nav-section">
+    <div class="nav-header">
+        <span class="nav-icon">🏥</span>
+        <span class="nav-text">Медицина</span>
+        <span class="nav-arrow">▼</span>
+    </div>
+    <div class="nav-submenu">
+        <a href="/chop_system/modules/medic/dashboard.php" class="nav-link <?php echo $currentPage == 'dashboard.php' ? 'active' : ''; ?>">
+            📊 Дашборд
+        </a>
+        <a href="/chop_system/modules/medic/medical_cards.php" class="nav-link <?php echo $currentPage == 'medical_cards.php' ? 'active' : ''; ?>">
+            📋 Медкарты
+        </a>
+        <a href="/chop_system/modules/medic/exams.php" class="nav-link <?php echo $currentPage == 'exams.php' ? 'active' : ''; ?>">
+            🩺 Медосмотры
+        </a>
+        <a href="/chop_system/modules/medic/employees.php" class="nav-link <?php echo $currentPage == 'employees.php' ? 'active' : ''; ?>">
+            👥 Сотрудники
+        </a>
+        <a href="/chop_system/modules/medic/reports.php" class="nav-link <?php echo $currentPage == 'reports.php' ? 'active' : ''; ?>">
+            📈 Отчеты
+        </a>
+        <a href="/chop_system/modules/medic/schedule.php" class="nav-link <?php echo $currentPage == 'schedule.php' ? 'active' : ''; ?>">
+            📅 График
+        </a>
+    </div>
+</div>
+<?php endif; ?>
 
         <!-- Отчеты -->
         <?php if (in_array($currentUserRole, ['admin', 'reports'])): ?>
