@@ -39,13 +39,14 @@ $pending_tasks = $stmt->fetch()['count'];
     <link rel="stylesheet" href="assets/css/style.css">
 	</head>
 <body>
-    <!-- Добавляем кнопку мобильного меню -->
+<!-- Кнопка мобильного меню -->
     <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
-    
+       
     <?php 
 	include 'includes/header.php';
 	include 'includes/sidebar.php'; ?>
-    
+     
+    <!-- Основной контент -->
     <div class="main-content">
         <div class="container">
             <div class="card">
@@ -161,7 +162,7 @@ $pending_tasks = $stmt->fetch()['count'];
     </div>
 
     <script src="assets/js/script.js"></script>
-    
+    <script src="assets/js/sidebar.js"></script>
     <!-- Footer -->
     <footer style="background: var(--dark-gray); color: white; padding: 2rem 0; text-align: center;">
         <div class="logo">

@@ -71,8 +71,7 @@ $month_names = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Медицинский кабинет - Главная</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
-   <link rel="stylesheet" href="../../assets/css/style.css">
-</head>
+   </head>
 <body>
     <?php include '../../includes/header.php'; 
     include '../../includes/sidebar.php';
