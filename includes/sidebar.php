@@ -26,14 +26,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </a>
         </div>
 
-        <!-- 📹 ВИДЕОНАБЛЮДЕНИЕ - НОВЫЙ РАЗДЕЛ -->
+            <!-- 📹 ВИДЕОНАБЛЮДЕНИЕ -->
         <?php if (in_array($currentUserRole, ['admin', 'senior', 'dispatcher'])): ?>
         <div class="nav-section">
             <div class="nav-header">
                 <span class="nav-icon">🎥</span>
                 <span class="nav-text">Видеонаблюдение</span>
                 <span class="nav-arrow">▼</span>
-                <span class="new-badge">NEW</span>
             </div>
             <div class="nav-submenu">
                 <a href="/chop_system/modules/video/dashboard.php" class="nav-link <?php echo $currentPage == 'dashboard.php' ? 'active' : ''; ?>">
