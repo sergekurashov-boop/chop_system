@@ -2,6 +2,7 @@
 
 require_once 'includes/config.php';
 require_once 'includes/auth.php';
+require_once __DIR__ . '/modules/requests/request_functions.php';
 
 // Редирект неавторизованных пользователей на титульную страницу
 if (!isLoggedIn()) {
@@ -91,6 +92,47 @@ $pending_tasks = $stmt->fetch()['count'];
                             </div>
                         </div>
                     </div>
+					<!-- Блок последних заявок на главной -->
+<div class="row" style="margin-top: 2rem;">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>📋 Последние заявки на охрану</h3>
+                <a href="modules/requests/requests_list.php" class="btn btn-primary">Все заявки</a>
+            </div>
+            <div class="card-body">
+                <?php
+                $recent_requests = getSecurityRequests();
+                $recent_count = min(5, count($recent_requests));
+                ?>
+                
+                <?php if ($recent_count > 0): ?>
+                    <div class="list-group">
+                        <?php for ($i = 0; $i < $recent_count; $i++): ?>
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1"><?php echo htmlspecialchars($recent_requests[$i]['object_name']); ?></h6>
+                                <small class="text-muted">#<?php echo $recent_requests[$i]['id']; ?></small>
+                            </div>
+                            <p class="mb-1">Клиент: <?php echo htmlspecialchars($recent_requests[$i]['client_name'] ?? 'Не указан'); ?></p>
+                            <small class="text-muted">
+                                Начало: <?php echo date('d.m.Y', strtotime($recent_requests[$i]['start_date'])); ?>
+                                • Статус: 
+                                <span class="badge bg-<?php echo $recent_requests[$i]['status'] == 'active' ? 'success' : 'secondary'; ?>">
+                                    <?php echo $recent_requests[$i]['status'] == 'active' ? 'Активна' : 'Завершена'; ?>
+                                </span>
+                            </small>
+                        </div>
+                        <?php endfor; ?>
+                    </div>
+                <?php else: ?>
+                    <p class="text-muted">Заявок пока нет</p>
+                    <a href="modules/requests/request_create.php" class="btn btn-success">Создать первую заявку</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
                     
                     <!-- Быстрое меню по ролям -->
                     <div class="row" style="margin-top: 2rem;">

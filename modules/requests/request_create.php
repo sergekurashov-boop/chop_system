@@ -23,14 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $client_id = $_POST['client_id'] ?? '';
         $object_type_id = $_POST['object_type_id'] ?? '';
         $object_name = trim($_POST['object_name'] ?? '');
+        $start_date = $_POST['start_date'] ?? date('Y-m-d'); // ДОБАВИЛИ ДАТУ
         
         if (empty($client_id) || empty($object_type_id) || empty($object_name)) {
             throw new Exception("Заполните обязательные поля");
         }
 
-        $sql = "INSERT INTO security_requests (client_id, object_type_id, object_name, created_by) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO security_requests (client_id, object_type_id, object_name, start_date, created_by) VALUES (?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$client_id, $object_type_id, $object_name, $_SESSION['user_id']]);
+        $stmt->execute([$client_id, $object_type_id, $object_name, $start_date, $_SESSION['user_id']]);
 
         $request_id = $pdo->lastInsertId();
         $success = "Заявка #{$request_id} создана!";
@@ -71,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="alert alert-success">
                         <?php echo $success; ?>
                         <div style="margin-top: 10px;">
-                            <a href="requests.php" class="btn btn-primary">К списку</a>
+                            <a href="requests_list.php" class="btn btn-primary">К списку</a>
                             <a href="request_create.php" class="btn btn-secondary">Еще заявку</a>
                         </div>
                     </div>
@@ -95,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <button type="submit" class="btn btn-primary">Создать</button>
-                    <a href="requests.php" class="btn btn-secondary">Отмена</a>
+                    <a href="requests_list.php" class="btn btn-secondary">Отмена</a>
                 </form>
                 <?php endif; ?>
             </div>
@@ -103,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 <?php include '../../includes/footer.php'; ?>
-
 <script src="../../assets/js/script.js"></script>
 <script src="../../assets/js/sidebar.js"></script>
 </body>

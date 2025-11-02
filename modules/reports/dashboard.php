@@ -18,8 +18,12 @@ if (!hasAccess('reports') && !hasAccess('admin')) {
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <?php include '../../includes/header.php'; ?>
-    
+    <?php include '../../includes/header.php'; 
+	include '../../includes/sidebar.php';
+	?>
+     
+    <!-- Основной контент -->
+    <div class="main-content">
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -97,7 +101,8 @@ if (!hasAccess('reports') && !hasAccess('admin')) {
             </div>
         </div>
     </div>
-
+ <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/sidebar.js"></script>
     <?php include '../../includes/footer.php'; ?>
 </body>
 </html>

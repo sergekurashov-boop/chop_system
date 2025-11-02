@@ -7,9 +7,11 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <aside class="sidebar">
     <div class="logo">
         <div class="sidebar-header">
+		
             <div class="logo-container">
-                <img src="/chop_system/742.jpg" alt="Логотип ЧОП" class="sidebar-logo">
+               <center> <h3>НАВИГАЦИЯ</h3></center>
             </div>
+			
             <button id="sidebarToggle" class="sidebar-toggle" title="Свернуть/развернуть сайдбар">
                 <span class="toggle-icon">←</span>
                 <span class="toggle-text">Свернуть</span>
@@ -25,6 +27,38 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <span class="nav-text">Главная</span>
             </a>
         </div>
+		<!-- Заявки на охрану -->
+<?php if (in_array($currentUserRole, ['admin', 'senior', 'manager'])): ?>
+<div class="nav-section">
+    <div class="nav-header">
+        <span class="nav-icon">📋</span>
+        <span class="nav-text">Заявки на охрану</span>
+        <span class="nav-arrow">▼</span>
+    </div>
+    <div class="nav-submenu">
+        <a href="/chop_system/modules/requests/requests_list.php" class="nav-link <?php echo $currentPage == 'requests_list.php' ? 'active' : ''; ?>">
+            📊 Все заявки
+        </a>
+        <a href="/chop_system/modules/requests/request_create.php" class="nav-link <?php echo $currentPage == 'request_create.php' ? 'active' : ''; ?>">
+            ➕ Создать заявку
+        </a>
+    </div>
+</div>
+<?php endif; ?>
+<!-- Сотрудники -->
+<?php if (in_array($currentUserRole, ['admin', 'senior', 'manager'])): ?>
+<div class="nav-section">
+    <div class="nav-header">
+        <span class="nav-icon">👥</span>
+        <span class="nav-text">Сотрудники</span>
+        <span class="nav-arrow">▼</span>
+    </div>
+    <div class="nav-submenu">
+        <a href="/chop_system/modules/staff/staff_list.php" class="nav-link">📋 Все сотрудники</a>
+        <a href="/chop_system/modules/staff/staff_add.php" class="nav-link">➕ Добавить сотрудника</a>
+    </div>
+</div>
+<?php endif; ?>
 
             <!-- 📹 ВИДЕОНАБЛЮДЕНИЕ -->
         <?php if (in_array($currentUserRole, ['admin', 'senior', 'dispatcher'])): ?>

@@ -65,4 +65,20 @@ function redirect($url) {
 
 // Автозагрузка функций
 require_once 'functions.php';
+// Добавляем в config.php после определения констант
+function loadTheme() {
+    $theme = $_SESSION['selected_theme'] ?? 'default';
+    
+    // Если тема выбрана через localStorage
+    if (isset($_GET['theme'])) {
+        $theme = $_GET['theme'];
+        $_SESSION['selected_theme'] = $theme;
+    }
+    
+    return $theme;
+}
+
+// Автоматическая загрузка темы
+$currentTheme = loadTheme();
+define('CURRENT_THEME', $currentTheme);
 ?>

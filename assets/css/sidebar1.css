@@ -1,0 +1,187 @@
+/* sidebar1.css - Золотой сайдбар */
+:root {
+    --gold-primary: #B8860B;
+    --gold-dark: #8B6914;
+    --gold-light: #DAA520;
+    --gold-very-light: #F5F5DC;
+    --sidebar-bg: #1a1a1a;
+    --sidebar-text: #ffffff;
+    --sidebar-hover: #2d2d2d;
+}
+
+.sidebar {
+    background: linear-gradient(180deg, var(--sidebar-bg) 0%, #2d2d2d 100%);
+    border-right: 3px solid var(--gold-primary);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar-header {
+    background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+    padding: 1.5rem 1rem;
+    border-bottom: 2px solid var(--gold-light);
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sidebar-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 6px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.sidebar-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Навигация */
+.sidebar-nav {
+    padding: 1rem 0;
+}
+
+.nav-section {
+    margin-bottom: 0.5rem;
+}
+
+.nav-header {
+    padding: 0.8rem 1rem;
+    color: var(--gold-very-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-header:hover {
+    background: var(--sidebar-hover);
+    border-left-color: var(--gold-primary);
+    color: var(--gold-light);
+}
+
+.nav-header .nav-icon {
+    font-size: 1.1rem;
+}
+
+.nav-header .nav-text {
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+.nav-arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.nav-submenu {
+    background: rgba(184, 134, 11, 0.05);
+    border-left: 3px solid var(--gold-primary);
+    margin-left: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background: rgba(184, 134, 11, 0.1);
+    color: var(--gold-light);
+    border-left-color: var(--gold-primary);
+}
+
+.nav-link.active {
+    background: linear-gradient(90deg, rgba(184, 134, 11, 0.2) 0%, transparent 100%);
+    color: var(--gold-light);
+    border-left-color: var(--gold-primary);
+    font-weight: 600;
+}
+
+/* Бейдж NEW */
+.new-badge {
+    background: linear-gradient(135deg, #E74C3C 0%, #CB4335 100%);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* Мобильное меню */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background: var(--gold-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+    }
+}
+
+/* Анимации для сайдбара */
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.sidebar {
+    animation: slideIn 0.3s ease-out;
+}
